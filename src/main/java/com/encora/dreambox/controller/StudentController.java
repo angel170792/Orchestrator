@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.encora.dreambox.core.Student;
+import com.encora.dreambox.exception.ResourceNotFoundException;
 import com.encora.dreambox.service.StudentService;
 
 @RestController
@@ -16,6 +17,10 @@ public class StudentController {
 
 	@GetMapping("/api/student/{id}")
 	public Student findStudentById(@PathVariable("id") String id) {
-		return studentService.findStudentById(id);
+		Student student = studentService.findStudentById(id);
+		if (student == null) {
+			throw new ResourceNotFoundException("Student not found whith id: " + id);
+		}
+		return student;
 	}
 }
