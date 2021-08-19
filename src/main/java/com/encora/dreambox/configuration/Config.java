@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.encora.dreambox.client.DataServicesClient;
+import com.encora.dreambox.client.impl.DataServicesClientImpl;
 import com.encora.dreambox.filter.TokenRequestFilter;
 
 @Configuration
@@ -16,7 +17,7 @@ public class Config {
 
 	@Bean
 	public DataServicesClient getDataServiceClient() {
-		return new DataServicesClient();
+		return new DataServicesClientImpl();
 	}
 
 	@Bean
